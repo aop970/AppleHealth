@@ -1,0 +1,38 @@
+[
+    {
+        "Type":"Indoor Cycling",
+        "Active_Energy_This_Week":0.0,
+        "Duration_This_Week":0,
+        "Avg_Heart_Rate_This_Week":0.0,
+        "Active_Energy_Last_Week":1532.21,
+        "Duration_Last_Week":"00:57:3600:53:44",
+        "Avg_Heart_Rate_Last_Week":149.52
+    },
+    {
+        "Type":"Other",
+        "Active_Energy_This_Week":0.0,
+        "Duration_This_Week":0,
+        "Avg_Heart_Rate_This_Week":0.0,
+        "Active_Energy_Last_Week":316.46,
+        "Duration_Last_Week":"00:03:0000:15:0000:15:00",
+        "Avg_Heart_Rate_Last_Week":122.24
+    },
+    {
+        "Type":"Tennis",
+        "Active_Energy_This_Week":0.0,
+        "Duration_This_Week":0,
+        "Avg_Heart_Rate_This_Week":0.0,
+        "Active_Energy_Last_Week":1260.79,
+        "Duration_Last_Week":"01:00:5201:08:21",
+        "Avg_Heart_Rate_Last_Week":121.57
+    },
+    {
+        "Type":"Traditional Strength Training",
+        "Active_Energy_This_Week":368.24,
+        "Duration_This_Week":"00:44:36",
+        "Avg_Heart_Rate_This_Week":117.53,
+        "Active_Energy_Last_Week":1008.39,
+        "Duration_Last_Week":"00:42:4900:43:1400:47:26",
+        "Avg_Heart_Rate_Last_Week":113.49
+    }
+]
