@@ -2,5 +2,7 @@
   "month": "April",
   "year": 2025,
   "mtd_active_energy_kcal": 2428.3,
-  "vo2_max": 41.6
+  "vo2_max": 41.6,
+  "vo2_max_delta": null,
+  "vo2_max_prev_month_avg": null
 }
