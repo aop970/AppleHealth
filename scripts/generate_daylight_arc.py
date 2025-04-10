@@ -20,7 +20,7 @@ OUTPUT_PATH = "data/daylight_arc.png"
 
 # Load fonts
 font_large = ImageFont.truetype(FONT_PATH, 36)
-font_icon = ImageFont.truetype(FONT_PATH, 32)
+font_icon = ImageFont.truetype(FONT_PATH, 36)
 
 def fetch_astronomy_data():
     url = f"https://api.sunrise-sunset.org/json?lat={LAT}&lng={LON}&formatted=0"
@@ -67,9 +67,9 @@ def create_daylight_graphic(data):
     h = bbox[3] - bbox[1]
     draw.text((CENTER - w // 2, CENTER - h // 2), center_text, fill=TEXT_COLOR, font=font_large)
 
-    # Sun and Moon icons (moved outward)
-    draw.text((CENTER - RADIUS - 30, CENTER - 20), "🌙", font=font_icon)
-    draw.text((CENTER + RADIUS + 10, CENTER - 20), "☀️", font=font_icon)
+    # Sun and Moon icons using DejaVu-compatible Unicode symbols
+    draw.text((CENTER - RADIUS - 30, CENTER - 20), "◐", font=font_icon, fill=TEXT_COLOR)
+    draw.text((CENTER + RADIUS + 10, CENTER - 20), "☼", font=font_icon, fill=TEXT_COLOR)
 
     return img
 
