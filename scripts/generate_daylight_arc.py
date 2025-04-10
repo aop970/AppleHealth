@@ -68,8 +68,8 @@ def create_daylight_graphic(data):
     draw.text((CENTER - w // 2, CENTER - h // 2), center_text, fill=TEXT_COLOR, font=font_large)
 
     # Sun and Moon icons using DejaVu-compatible Unicode symbols
-    draw.text((CENTER - RADIUS - 30, CENTER - 20), "◐", font=font_icon, fill=TEXT_COLOR)
-    draw.text((CENTER + RADIUS + 10, CENTER - 20), "☼", font=font_icon, fill=TEXT_COLOR)
+    draw.text((CENTER - RADIUS - 30, CENTER - 20), "☼", font=font_icon, fill=TEXT_COLOR) 
+    draw.text((CENTER + RADIUS + 10, CENTER - 20), "◐", font=font_icon, fill=TEXT_COLOR)
 
     return img
 
