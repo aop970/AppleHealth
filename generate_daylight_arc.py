@@ -1,10 +1,10 @@
-
 import requests
 from datetime import datetime
 from PIL import Image, ImageDraw, ImageFont
 import math
 import os
 
+# Constants for Trophy Club, TX
 LAT = 33.0034
 LON = -97.2020
 IMAGE_SIZE = 500
@@ -16,6 +16,7 @@ TEXT_COLOR = (255, 255, 255)
 FONT_PATH = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 OUTPUT_PATH = "data/daylight_arc.png"
 
+# Load fonts
 font_large = ImageFont.truetype(FONT_PATH, 36)
 font_small = ImageFont.truetype(FONT_PATH, 24)
 
@@ -31,27 +32,36 @@ def time_to_angle(iso_time):
     return (minutes / 1440.0) * 360 - 90
 
 def draw_arc(draw, start, end, color, width):
-    draw.arc([CENTER - RADIUS, CENTER - RADIUS, CENTER + RADIUS, CENTER + RADIUS],
-             start=start, end=end, fill=color, width=width)
+    draw.arc(
+        [CENTER - RADIUS, CENTER - RADIUS, CENTER + RADIUS, CENTER + RADIUS],
+        start=start,
+        end=end,
+        fill=color,
+        width=width
+    )
 
 def create_daylight_graphic(data):
     img = Image.new("RGB", (IMAGE_SIZE, IMAGE_SIZE), BG_COLOR)
     draw = ImageDraw.Draw(img)
 
+    # Arc angles
     sunrise_angle = time_to_angle(data['sunrise'])
     sunset_angle = time_to_angle(data['sunset'])
     draw_arc(draw, sunrise_angle, sunset_angle, SUN_COLOR, 20)
 
+    # Duration text
     seconds = int(data['day_length'])
     hours, remainder = divmod(seconds, 3600)
     minutes = remainder // 60
     center_text = f"{hours}h {minutes}m"
+
+    # Fixed for newer Pillow versions
     bbox = draw.textbbox((0, 0), center_text, font=font_large)
     w = bbox[2] - bbox[0]
     h = bbox[3] - bbox[1]
-
     draw.text((CENTER - w // 2, CENTER - h // 2), center_text, fill=TEXT_COLOR, font=font_large)
 
+    # Sun icons left and right
     draw.text((CENTER - RADIUS - 10, CENTER - 15), "☀️", font=font_small)
     draw.text((CENTER + RADIUS - 30, CENTER - 15), "☀️", font=font_small)
 
