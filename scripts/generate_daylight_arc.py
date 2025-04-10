@@ -1,3 +1,4 @@
+
 import requests
 from datetime import datetime
 from PIL import Image, ImageDraw, ImageFont
@@ -11,6 +12,7 @@ IMAGE_SIZE = 500
 CENTER = IMAGE_SIZE // 2
 RADIUS = 180
 SUN_COLOR = (255, 215, 0)
+NIGHT_COLOR = (100, 149, 237)  # Light steel blue
 BG_COLOR = (30, 30, 30)
 TEXT_COLOR = (255, 255, 255)
 FONT_PATH = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
@@ -18,7 +20,7 @@ OUTPUT_PATH = "data/daylight_arc.png"
 
 # Load fonts
 font_large = ImageFont.truetype(FONT_PATH, 36)
-font_small = ImageFont.truetype(FONT_PATH, 24)
+font_icon = ImageFont.truetype(FONT_PATH, 32)
 
 def fetch_astronomy_data():
     url = f"https://api.sunrise-sunset.org/json?lat={LAT}&lng={LON}&formatted=0"
@@ -44,9 +46,14 @@ def create_daylight_graphic(data):
     img = Image.new("RGB", (IMAGE_SIZE, IMAGE_SIZE), BG_COLOR)
     draw = ImageDraw.Draw(img)
 
-    # Arc angles
+    # Angles
     sunrise_angle = time_to_angle(data['sunrise'])
     sunset_angle = time_to_angle(data['sunset'])
+
+    # Draw full night arc first
+    draw_arc(draw, 0, 360, NIGHT_COLOR, 20)
+
+    # Draw daylight arc on top
     draw_arc(draw, sunrise_angle, sunset_angle, SUN_COLOR, 20)
 
     # Duration text
@@ -55,15 +62,14 @@ def create_daylight_graphic(data):
     minutes = remainder // 60
     center_text = f"{hours}h {minutes}m"
 
-    # Fixed for newer Pillow versions
     bbox = draw.textbbox((0, 0), center_text, font=font_large)
     w = bbox[2] - bbox[0]
     h = bbox[3] - bbox[1]
     draw.text((CENTER - w // 2, CENTER - h // 2), center_text, fill=TEXT_COLOR, font=font_large)
 
-    # Sun icons left and right
-    draw.text((CENTER - RADIUS - 10, CENTER - 15), "☀️", font=font_small)
-    draw.text((CENTER + RADIUS - 30, CENTER - 15), "☀️", font=font_small)
+    # Sun and Moon icons (moved outward)
+    draw.text((CENTER - RADIUS - 30, CENTER - 20), "🌙", font=font_icon)
+    draw.text((CENTER + RADIUS + 10, CENTER - 20), "☀️", font=font_icon)
 
     return img
 
