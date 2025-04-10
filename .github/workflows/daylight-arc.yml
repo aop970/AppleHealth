@@ -18,10 +18,11 @@ jobs:
           python-version: "3.10"
 
       - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y python3-pil fonts-dejavu
-          pip install requests
+          run: |
+            sudo apt-get update
+            sudo apt-get install -y fonts-dejavu
+            pip install requests Pillow
+
 
       - name: Generate daylight arc
         run: python scripts/generate_daylight_arc.py
