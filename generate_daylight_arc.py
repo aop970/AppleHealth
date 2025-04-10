@@ -46,7 +46,10 @@ def create_daylight_graphic(data):
     hours, remainder = divmod(seconds, 3600)
     minutes = remainder // 60
     center_text = f"{hours}h {minutes}m"
-    w, h = draw.textsize(center_text, font=font_large)
+    bbox = draw.textbbox((0, 0), center_text, font=font_large)
+    w = bbox[2] - bbox[0]
+    h = bbox[3] - bbox[1]
+
     draw.text((CENTER - w // 2, CENTER - h // 2), center_text, fill=TEXT_COLOR, font=font_large)
 
     draw.text((CENTER - RADIUS - 10, CENTER - 15), "☀️", font=font_small)
