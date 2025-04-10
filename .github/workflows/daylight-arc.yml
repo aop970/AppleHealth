@@ -2,8 +2,11 @@ name: Generate Daylight Arc
 
 on:
   schedule:
-    - cron: "30 11 * * *"  # Runs daily at 6:30 AM CST
+    - cron: "30 11 * * *"  # 6:30 AM CST
   workflow_dispatch:
+
+permissions:
+  contents: write  # 👈 This gives the workflow permission to push code
 
 jobs:
   build:
