@@ -1,0 +1,35 @@
+name: Generate Daylight Arc
+
+on:
+  schedule:
+    - cron: "30 11 * * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-dejavu
+          pip install requests Pillow
+
+      - name: Generate daylight arc
+        run: python scripts/generate_daylight_arc.py
+
+      - name: Commit and push image
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@users.noreply.github.com"
+          git add data/daylight_arc.png
+          git commit -m "Daily daylight arc update" || echo "No changes"
+          git push
