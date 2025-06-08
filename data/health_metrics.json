@@ -4,7 +4,7 @@
   "mtd_active_energy_kcal": 3030.6,
   "active_energy_prev_month_mtd": 782.0,
   "active_energy_percent_delta": "287.53%",
-  "vo2_max": null,
-  "vo2_max_delta": null,
-  "vo2_max_prev_month_avg": null
+  "vo2_max": 41.3,
+  "vo2_max_delta": .24%,
+  "vo2_max_prev_month_avg": 41.2
 }
