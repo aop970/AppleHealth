@@ -1,9 +1,9 @@
 {
   "month": "June",
   "year": 2025,
-  "mtd_active_energy_kcal": 7444.1,
-  "active_energy_prev_month_mtd": 4620.6,
-  "active_energy_percent_delta": "61.11%",
+  "mtd_active_energy_kcal": 9709.3,
+  "active_energy_prev_month_mtd": 5873.4,
+  "active_energy_percent_delta": "65.31%",
   "vo2_max": null,
   "vo2_max_delta": null,
   "vo2_max_prev_month_avg": null
